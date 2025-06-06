@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Kesar Chanana - DevOps Resume</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Kesar Chanana</h1>
+        <p>Abohar, Punjab | +91-8360906552 | <a href="mailto:kesarchanana12@gmail.com">kesarchanana12@gmail.com</a></p>
+        <p><a href="https://www.linkedin.com/in/kesar-chanana/">LinkedIn</a> | <a href="https://gitlab.com/Kesar.Chanana">GitLab</a></p>
+
+        <h2>About Me</h2>
+        <p>I am a DevOps professional with 1 year of experience in automation scripting and cloud technologies. I aim to deepen my expertise in DevOps while expanding into backend development. Passionate about improving health outcomes through technology.</p>
+
+        <h2>Technical Skills</h2>
+        <ul>
+            <li><strong>Languages:</strong> Java, SpringBoot, PowerShell, Bash, Linux, C++, Data Structures</li>
+            <li><strong>Developer Tools:</strong> Git, Postman, Visual Studio, Nginx, IIS, MySQL, AWS, Azure</li>
+            <li><strong>Web Services:</strong> RESTful, SOAP</li>
+            <li><strong>DevOps Tools:</strong> CI/CD, Logging, Monitoring, Observability</li>
+            <li><strong>Soft Skills:</strong> Communication, Teamwork, Problem-solving, Leadership</li>
+        </ul>
+
+        <h2>Experience</h2>
+        <h3>Onebanc Technologies Pvt. Ltd. (Sept 2024 – Present)</h3>
+        <ul>
+            <li>Created secure deployment pipelines from development to production.</li>
+            <li>Enabled automated release/rollback using Rsync and Robocopy.</li>
+        </ul>
+
+        <h3>Dotsquares (Feb 2024 – Sept 2024)</h3>
+        <ul>
+            <li>Designed cloud architectures using AWS and Azure.</li>
+            <li>Managed ECS, Lambda, API Gateway, and RDS deployments.</li>
+        </ul>
+
+        <h2>Projects</h2>
+        <ul>
+            <li><strong>Deploy Process:</strong> Built tools for secure deployment and rollback across Linux and Windows.</li>
+            <li><strong>Pre-Release Script:</strong> Automated build validation and git check-in using PowerShell and NPM.</li>
+            <li><strong>AutoDeploySync:</strong> CI/CD pipeline from developer laptop to production.</li>
+            <li><strong>Cloud Deployment:</strong> Used AWS Fargate and RDS to reduce cost and improve performance.</li>
+        </ul>
+
+        <h2>Education</h2>
+        <p><strong>B.E. CSE</strong>, Chandigarh University (2020 – 2024), Mohali, Punjab</p>
+
+        <h2>Visitor Counter</h2>
+        <p>Visitor Count: <span id="visitor-count">Loading...</span></p>
+    </div>
+
+    <script>
+        async function updateVisitorCount() {
+            try {
+                const response = await fetch("https://fcpplx8ng3.execute-api.ap-south-1.amazonaws.com/Prod/visitor");
+                const data = await response.json();
+                document.getElementById("visitor-count").innerText = data.visitor_count;
+            } catch (error) {
+                console.error("Failed to load visitor count", error);
+            }
+        }
+
+        updateVisitorCount();
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Visitor Counter using Lambda, API Gateway, and DynamoDB
+
+Globals:
+  Function:
+    Timeout: 5
+    Runtime: python3.13
+    Environment:
+      Variables:
+        TABLE_NAME: VisitorCountTable
+
+Resources:
+  VisitorCounterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: hello_world/
+      Handler: app.lambda_handler
+      Events:
+        VisitorApi:
+          Type: Api
+          Properties:
+            Path: /visitor
+            Method: GET
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: VisitorCountTable
+
+  VisitorCountTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: VisitorCountTable
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+Outputs:
+  VisitorApiUrl:
+    Description: "API Gateway endpoint for the visitor counter"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/visitor"
