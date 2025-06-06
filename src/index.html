@@ -55,7 +55,7 @@
     <script>
         async function updateVisitorCount() {
             try {
-                const response = await fetch("https://fcpplx8ng3.execute-api.ap-south-1.amazonaws.com/Prod/visitor");
+                const response = await fetch("https:<yourapi>/Prod/visitor");
                 const data = await response.json();
                 document.getElementById("visitor-count").innerText = data.visitor_count;
             } catch (error) {
